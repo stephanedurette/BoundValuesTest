@@ -1,0 +1,24 @@
+Modular observable bound values
+
+BoundFloatData
+	float Value (not shown in inspector)
+	BoundFloatData MinValue
+	BoundFloatData MaxValue
+	bool startAtMinValue
+	bool startAtMaxValue
+
+BoundFloat
+	Action<float> OnMaxValueChanged
+	Action<float> OnMinValueChanged
+	Action<float> OnValueChanged
+
+	public float MinValue, MaxValue, Value get private set
+		//These need to be observable and clamped to their respective min and max values
+
+	Constructor(bound float data)
+		//Set starting value according to bools in the data
+
+	public Bind(Function onMaxChanged, onMinChanged, onValueChanged)
+		//binds the events to the caller, then calls all those events with the starting values
+
+make a mockup ui for this with a view that binds to the BoundFloat of choice and changes appropriately when the min and max values are changed
