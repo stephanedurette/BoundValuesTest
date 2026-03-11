@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private BoundFloatData boundFloatData;
+    [SerializeField] private BoundedFloatData boundFloatData;
 
     void Start()
     {

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Float : FloatValue
+public class SerializedUnboundedFloat : SerializedFloat
 {
     public float Value;
 }
