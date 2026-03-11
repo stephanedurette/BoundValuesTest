@@ -2,8 +2,8 @@ Modular observable bound values
 
 BoundFloatData
 	float Value (not shown in inspector)
-	BoundFloatData MinValue
-	BoundFloatData MaxValue
+	BoundFloatData MinValue - either FloatData or BoundFloatData, can be bounded itself(BoundedFloatData) or just have a static value(FloatData), ideally you can just enter a value inline if unbounded
+	BoundFloatData MaxValue - same
 	bool startAtMinValue
 	bool startAtMaxValue
 
