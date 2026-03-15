@@ -7,10 +7,22 @@ public class BoundedFloat
         get { return _value; } 
         set { 
             float clampedValue = Mathf.Clamp(value, _minValue.Value, _maxValue.Value);
-            if (clampedValue == value) return;
+            if (clampedValue == _value) return;
             _value = clampedValue; 
             OnValueChanged?.Invoke(_value);
         } 
+    }
+
+    public float MaxValue
+    {
+        get { return _maxValue.Value; }
+        set { _maxValue.Value = value; }
+    }
+
+    public float MinValue
+    {
+        get { return _minValue.Value; }
+        set { _minValue.Value = value; }
     }
 
     private float _value;
