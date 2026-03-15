@@ -1,0 +1,1 @@
+bounded float's maxvalue and minvalue changes listen to it's children changes
