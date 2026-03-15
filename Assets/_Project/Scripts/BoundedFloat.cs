@@ -66,19 +66,22 @@ public class BoundedFloat
                 break;
         }
 
-        _minValue.OnValueChanged += (newValue) => OnMaxValueChanged?.Invoke(newValue);
-        _maxValue.OnValueChanged += (newValue) => OnMinValueChanged?.Invoke(newValue);
+        _minValue.OnValueChanged += (newValue) => OnMinValueChanged?.Invoke(newValue);
+        _maxValue.OnValueChanged += (newValue) => OnMaxValueChanged?.Invoke(newValue);
     }
 
-    public void Bind(Action<float> OnValueChanged, Action<float> OnMaxValueChanged = null, Action<float> OnMinValueChanged = null)
+    public void Bind(Action<float> OnValueChanged, Action<float> OnMaxValueChanged = null, Action<float> OnMinValueChanged = null, bool invokeAfterBind = true)
     {
         this.OnValueChanged += OnValueChanged;
         if (OnMaxValueChanged != null) this.OnMaxValueChanged += OnMaxValueChanged;
         if (OnMinValueChanged != null) this.OnMinValueChanged += OnMinValueChanged;
 
-        this.OnValueChanged?.Invoke(_value);
-        this.OnMinValueChanged?.Invoke(_minValue.Value);
-        this.OnMaxValueChanged?.Invoke(_maxValue.Value);
+        if (invokeAfterBind)
+        {
+            this.OnValueChanged?.Invoke(_value);
+            this.OnMinValueChanged?.Invoke(_minValue.Value);
+            this.OnMaxValueChanged?.Invoke(_maxValue.Value);
+        }
     }
 
     public void Unbind(Action<float> OnValueChanged, Action<float> OnMaxValueChanged = null, Action<float> OnMinValueChanged = null)

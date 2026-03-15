@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         BoundedFloat f = new BoundedFloat(boundFloatData);
-        f.Bind(OnValueChanged, OnMaxValueChanged, OnMinValueChanged);
-        f.MaxValue = 101;
+        f.Bind(OnValueChanged, OnMaxValueChanged, OnMinValueChanged, false);
+        f.Value = 999;
+        f.MaxValue = 999;
+        f.Value = 999;
     }
 
     private void OnMaxValueChanged(float value)
