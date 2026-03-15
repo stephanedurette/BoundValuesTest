@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     {
         BoundedFloat f = new BoundedFloat(boundFloatData);
         f.Bind(OnValueChanged, OnMaxValueChanged, OnMinValueChanged, false);
+
         f.Value = 999;
-        f.MaxValue = 999;
+        f.MaxValue.Value = 999;
         f.Value = 999;
     }
 

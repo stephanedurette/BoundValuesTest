@@ -13,17 +13,9 @@ public class BoundedFloat
         } 
     }
 
-    public float MaxValue
-    {
-        get { return _maxValue.Value; }
-        set { _maxValue.Value = value; }
-    }
+    public BoundedFloat MaxValue => _maxValue;
 
-    public float MinValue
-    {
-        get { return _minValue.Value; }
-        set { _minValue.Value = value; }
-    }
+    public BoundedFloat MinValue => _minValue;
 
     private float _value;
     private BoundedFloat _minValue;
