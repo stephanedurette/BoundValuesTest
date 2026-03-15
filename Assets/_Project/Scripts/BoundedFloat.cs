@@ -48,12 +48,6 @@ public class BoundedFloat
         _value = value;
     }
 
-    ~BoundedFloat()
-    {
-        _minValue.OnValueChanged -= OnMinValueChanged;
-        _maxValue.OnValueChanged -= OnMaxValueChanged;
-    }
-
     private void Initialize(SerializedFloat serializedFloat)
     {
         switch (serializedFloat)
@@ -72,8 +66,8 @@ public class BoundedFloat
                 break;
         }
 
-        _minValue.OnValueChanged += OnMinValueChanged;
-        _maxValue.OnValueChanged += OnMaxValueChanged;
+        _minValue.OnValueChanged += (newValue) => OnMaxValueChanged?.Invoke(newValue);
+        _maxValue.OnValueChanged += (newValue) => OnMinValueChanged?.Invoke(newValue);
     }
 
     public void Bind(Action<float> OnValueChanged, Action<float> OnMaxValueChanged = null, Action<float> OnMinValueChanged = null)
