@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34991b05a09f9554795835fe794f9ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundFloatData: {fileID: 11400000, guid: 9f08ffec11d29bd4c84babf476a1e5bc, type: 2}
+  boundFloatData: {fileID: 11400000, guid: b799ead79061bcf4b956b4d1bf175e65, type: 2}
 --- !u!4 &308312443
 Transform:
   m_ObjectHideFlags: 0

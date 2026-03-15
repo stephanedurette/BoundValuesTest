@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //BoundFloat f = new BoundFloat(boundFloatData);
-        //Debug.Log(f.Value);
+        BoundedFloat f = new BoundedFloat(boundFloatData);
+        Debug.Log(f.Value);
     }
 
 }

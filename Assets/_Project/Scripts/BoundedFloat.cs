@@ -1,8 +1,17 @@
 using System;
+using UnityEngine;
 
 public class BoundedFloat
 {
-    public float Value { get { return _value; } set { _value = value; } }
+    public float Value { 
+        get { return _value; } 
+        set { 
+            float clampedValue = Mathf.Clamp(value, _minValue.Value, _maxValue.Value);
+            if (clampedValue == value) return;
+            _value = clampedValue; 
+            OnValueChanged?.Invoke(_value);
+        } 
+    }
 
     private float _value;
     private BoundedFloat _minValue;
@@ -60,7 +69,12 @@ public class BoundedFloat
         this.OnValueChanged += OnValueChanged;
         if (OnMaxValueChanged != null) this.OnMaxValueChanged += OnMaxValueChanged;
         if (OnMinValueChanged != null) this.OnMinValueChanged += OnMinValueChanged;
+
+        this.OnValueChanged?.Invoke(_value);
+        this.OnMinValueChanged?.Invoke(_minValue.Value);
+        this.OnMaxValueChanged?.Invoke(_maxValue.Value);
     }
+
     public void Unbind(Action<float> OnValueChanged, Action<float> OnMaxValueChanged = null, Action<float> OnMinValueChanged = null)
     {
         this.OnValueChanged -= OnValueChanged;
