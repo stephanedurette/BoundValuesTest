@@ -2,6 +2,8 @@ using System;
 
 public class BoundedFloat
 {
+    public float Value { get { return _value; } set { _value = value; } }
+
     private float _value;
     private BoundedFloat _minValue;
     private BoundedFloat _maxValue;
@@ -25,6 +27,12 @@ public class BoundedFloat
         _value = value;
     }
 
+    ~BoundedFloat()
+    {
+        _minValue.OnValueChanged -= OnMinValueChanged;
+        _maxValue.OnValueChanged -= OnMaxValueChanged;
+    }
+
     private void Initialize(SerializedFloat serializedFloat)
     {
         switch (serializedFloat)
@@ -35,13 +43,16 @@ public class BoundedFloat
                 _maxValue = new BoundedFloat(float.MaxValue);
                 break;
             case SerializedBoundedFloat bF:
-                //_value =
+                _minValue = new BoundedFloat(bF.Min);
+                _maxValue = new BoundedFloat(bF.Max);
+                _value = bF.StartsAtMax ? _maxValue.Value : _minValue.Value;
                 break;
             default:
                 break;
         }
 
-        //listen for min and max value changes
+        _minValue.OnValueChanged += OnMinValueChanged;
+        _maxValue.OnValueChanged += OnMaxValueChanged;
     }
 
     public void Bind(Action<float> OnValueChanged, Action<float> OnMaxValueChanged = null, Action<float> OnMinValueChanged = null)
